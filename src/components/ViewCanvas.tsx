@@ -2,6 +2,8 @@
 
 import React from "react";
 import { Canvas } from "@react-three/fiber";
+import { Environment, Float } from "@react-three/drei";
+import FloatingCan from "@/components/FloatingCan";
 
 type Props = {};
 
@@ -15,23 +17,17 @@ const ViewCanvas = (props: Props) => {
         transform: "translateX(-50%)",
         overflow: "hidden",
         pointerEvents: "none",
-        zIndex: 30
+        zIndex: 30,
       }}
       shadows
-      dpr={[1,1.5]}
-      gl={{antialias: true}}
+      dpr={[1, 1.5]}
+      gl={{ antialias: true }}
       camera={{
-        fov: 30
+        fov: 30,
       }}
     >
-
-      {/* Math.PI * 2 2PI  */}
-      <mesh rotation={[.5, .5, 0]} position={[1,0,0]}>
-        <boxGeometry />
-        <meshStandardMaterial color={"hotpink"} />
-      </mesh>
-      <ambientLight intensity={2} />
-      <spotLight intensity={3} position={[1,1,1]}/>
+      <FloatingCan/>
+      <Environment files="/hdr/lobby.hdr" environmentIntensity={1.5} />
     </Canvas>
   );
 };
